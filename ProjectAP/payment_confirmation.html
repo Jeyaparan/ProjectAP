@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appointment Payment Confirmation</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Appointment Payment Confirmation</h1>
+        
+        <!-- Display appointment details -->
+        <div id="appointmentDetails">
+            <!-- Appointment details will be displayed here dynamically -->
+        </div>
+        
+        <!-- Payment method confirmation -->
+        <form action="confirmation.html" method="post" onsubmit="return validatePayment()">
+            <p>Please confirm your payment method:</p>
+            <input type="radio" id="credit_card" name="payment_method" value="credit_card">
+            <label for="credit_card">Credit Card</label><br>
+            <input type="radio" id="paypal" name="payment_method" value="paypal">
+            <label for="paypal">PayPal</label><br>
+            <input type="radio" id="other" name="payment_method" value="other">
+            <label for="other">Other</label><br>
+            <input type="submit" value="Confirm Payment">
+        </form>
+
+        <!-- Function to display appointment details -->
+        <script>
+            function displayAppointmentDetails() {
+                var userDetails = sessionStorage.getItem('userDetails');
+                if (userDetails) {
+                    userDetails = JSON.parse(userDetails);
+                    var appointmentDetails = document.getElementById('appointmentDetails');
+                    appointmentDetails.innerHTML = '<h2>Appointment Details:</h2>' +
+                                                    '<p>Name: ' + userDetails.name + '</p>' +
+                                                    '<p>Booking Date: ' + userDetails.bookingDate + '</p>' +
+                                                    '<p>Lab Appointment: ' + userDetails.labAppointment + '</p>' +
+                                                    '<p>Time Slot: ' + userDetails.timeSlot + '</p>';
+                }
+            }
+            displayAppointmentDetails();
+        </script>
+
+        <!-- Function to validate payment method selection -->
+        <script>
+            function validatePayment() {
+                var paymentMethod = document.querySelector('input[name="payment_method"]:checked');
+                if (!paymentMethod) {
+                    alert("Please select a payment method.");
+                    return false; // Prevent form submission
+                }
+                return true; // Allow form submission
+            }
+        </script>
+    </div>
+</body>
+</html>

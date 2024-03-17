@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lap Appointment</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Lap Appointment</h1>
+        <form action="payment_confirmation.html" method="post">
+            <label for="user_name">Name:</label><br>
+            <input type="text" id="user_name" name="user_name" required><br><br>
+            
+            <label for="booking_date">Booking Date:</label><br>
+            <input type="date" id="booking_date" name="booking_date" required><br><br>
+            
+            <label for="lab_appointment">Lab Appointment:</label><br>
+            <select id="lab_appointment" name="lab_appointment" onchange="displayTimeSlots()" required>
+                <option value="" disabled selected>Select Lab Appointment</option>
+                <option value="MRI">MRI</option>
+                <option value="X-Ray">X-Ray</option>
+                <option value="Ultrasound">Ultrasound</option>
+            </select><br><br>
+            
+            <label for="time_slot">Time Slot:</label><br>
+            <select id="time_slot" name="time_slot" required></select><br><br>
+            
+            <input type="submit" value="Proceed to Payment">
+        </form>
+    </div>
+</body>
+</html>
